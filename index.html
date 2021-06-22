@@ -6,16 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Design System</title>
 
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+
+            padding: 0;
+            margin: 0;
+
+            box-sizing: border-box;
+            font-family: Arial;
+        }
+    </style>
+
     <script src="js/index.js" type="module"></script>
 </head>
 <body>
-    <d-button style="margin: 0 0 1rem 0;">
-        Hello World 
-        <ion-icon name="settings-outline"></ion-icon>
-    </d-button>
+    <d-container type="main">
+        <h1>Buttons</h1>
 
-    <d-button>
-        <ion-icon name="settings-outline"></ion-icon>
-    </d-button>
+        <d-container type="flex">
+            <d-button style="margin: 0 0.5rem 0 0;">
+                Settings 
+                <ion-icon name="settings-outline"></ion-icon>
+            </d-button>
+    
+            <d-button>
+                <ion-icon name="search-outline"></ion-icon>
+            </d-button>
+        </d-container>
+    </d-container>
 </body>
 </html>

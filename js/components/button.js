@@ -44,6 +44,7 @@ define("d-button", {
 
     render(state, target) {
         const {style} = props(target)
+        
         return jsh.button({style},
             ...target.childNodes
         ) 
