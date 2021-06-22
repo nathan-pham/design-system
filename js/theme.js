@@ -1,24 +1,26 @@
 const generatePalette = (base, colors) => {
     let palette = {}
 
-    palette[`${base}-50`] = colors.shift()
-    for(let i = 1; i < colors.length; i++) {
-        palette[`${base}-${i * 100}`] = colors.shift()
+    for(let i = 0; i < colors.length; i++) {
+        palette[`${base}-${i * 100}`] = colors[i]
     }
 
     return palette
 }
 
+const prefix = (p, json) => {
+    return Object.keys(json).reduce((acc, cur) => ({ ...acc, [`${p}-${cur}`]: json[cur] }), {})
+}
+
 export const theme = {
     // colors
-    "black": "#000000",
-    "white": "#ffffff",
-    "red": "#da1e28",
-    "green": "#198038",
-    "orange": "#ff832b",
-    "yellow": "#fdd13a",
-
-    ...generatePalette("blue", [
+    ...prefix("d", {
+        "red": "#da1e28",
+        "green": "#198038",
+        "orange": "#ff832b",
+        "yellow": "#fdd13a"
+    }),
+    ...generatePalette("dblue", [
         "#edf5ff",
         "#d0e2ff",
         "#a6c8ff",
@@ -30,8 +32,7 @@ export const theme = {
         "#001d6c",
         "#001141"
     ]),
-
-    ...generatePalette("gray", [
+    ...generatePalette("dgray", [
         "#f4f4f4",
         "#e0e0e0",
         "#c6c6c6",
@@ -53,7 +54,7 @@ export const css = (strings) => {
 
     for(const [key, value] of Object.entries(theme)) {
         if(stylesheet.includes(key)) {
-            if(key.includes("bu")) {
+            if(key == "bu") {
                 const matches = stylesheet.match(/bu-[0-9]+/g)
 
                 if(matches) {
@@ -62,7 +63,7 @@ export const css = (strings) => {
                         stylesheet = stylesheet.replaceAll(match, `calc(${theme.bu} * ${multiplier})`)
                     }
                 }
-            } else {
+            } else if(theme.hasOwnProperty(key)) {
                 stylesheet = stylesheet.replaceAll(key, value)
             }
         }

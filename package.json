@@ -1,0 +1,20 @@
+{
+  "name": "design-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "snowpack.config.js",
+  "dependencies": {
+    "stateful-components": "^2.1.1"
+  },
+  "devDependencies": {
+    "snowpack": "^3.5.9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "snowpack dev",
+    "build": "snowpack build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
