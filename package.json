@@ -4,7 +4,7 @@
   "description": "",
   "main": "snowpack.config.js",
   "dependencies": {
-    "stateful-components": "^2.1.4"
+    "stateful-components": "^2.1.5"
   },
   "devDependencies": {
     "snowpack": "^3.5.9"

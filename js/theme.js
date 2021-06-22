@@ -49,11 +49,8 @@ export const theme = {
     "bu": "0.125rem"
 }
 
-export const css = (strings) => {
-    let stylesheet = Array.isArray(strings) ? strings.join(' ') : strings
+export const css = (stylesheet) => {
     let tokens = stylesheet.split(' ').map(v => v.trim()).filter(v => v.length)
-
-    console.log(tokens)
 
     for(let i = 0; i < tokens.length; i++) {
         let token = tokens[i]

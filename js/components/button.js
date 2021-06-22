@@ -1,10 +1,12 @@
 import "https://cdn.jsdelivr.net/npm/ionicons/dist/ionicons/ionicons.esm.js"
-import define, { jsh } from "stateful-components"
+import define, { jsh, props } from "stateful-components"
 import { css } from "../theme.js"
 
 define("d-button", {
-    style: css`
-        button {
+    style(state, target) {
+        const childNodes = [...target.shadowRoot.childNodes[0].childNodes].filter(node => String(node.textContent).trim().length > 1 && node.nodeName == "#text")
+
+        return css(`button {
             background: dblue-500;
             color: white;
 
@@ -21,8 +23,9 @@ define("d-button", {
             outline: none;
             border: none;
             border-radius: 0;
-            min-width: bu-80;
-            
+
+            ${ childNodes.length > 0 ? "min-width: bu-80;" : "" }
+                
             position: relative;
 
             transition: background 0.1s ease;
@@ -33,13 +36,14 @@ define("d-button", {
         }
 
         button ion-icon {
-            margin: 0 0 0 bu-12;
             font-size: bu-8;
-        }
-    `,
+            margin: 0;
+        }`)
+    },
 
     render(state, target) {
-        return jsh.button({},
+        const {style} = props(target)
+        return jsh.button({style},
             ...target.childNodes
         ) 
     }
