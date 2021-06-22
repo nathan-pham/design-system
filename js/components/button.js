@@ -8,9 +8,6 @@ define("d-button", {
         const filtered = [...childNodes].filter(node => String(node.textContent).trim().length > 1 && node.nodeName == "#text")
 
         return css(`button {
-            background: dblue-500;
-            color: white;
-
             cursor: pointer;
             display: flex;
             text-align: center;
@@ -32,20 +29,32 @@ define("d-button", {
             transition: background 0.1s ease;
         }
 
-        button:hover {
-            background: dblue-600;
-        }
-
         button ion-icon {
             font-size: bu-8;
             margin: 0;
+        }
+
+        button.primary {
+            background: dblue-500;
+            color: white;
+        }
+        
+        button.primary:hover {
+            background: dblue-600;
+        }
+
+        button.disabled {
+            background: dgray-200;
+            color: dgray-500;
+
+            cursor: not-allowed;
         }`)
     },
 
     render(state, target) {
-        const {style} = props(target)
-        
-        return jsh.button({style},
+        const {style, type="primary"} = props(target)
+
+        return jsh.button({style, class: type},
             ...target.childNodes
         ) 
     }
