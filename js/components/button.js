@@ -5,10 +5,9 @@ import { css } from "../theme.js"
 define("d-button", {
     style(state, target) {
         const { childNodes } = target.shadowRoot.childNodes[0]
-        const filtered = [...childNodes].filter(node => String(node.textContent).trim().length > 1 && node.nodeName == "#text")
+        const filtered = [...childNodes].filter(node => String(node.textContent).trim().length > 1 || node?.tagName?.toLowerCase() == "ion-icon")
 
         return css(`button {
-            cursor: pointer;
             display: flex;
             text-align: center;
             align-items: center;
@@ -22,9 +21,10 @@ define("d-button", {
             border: none;
             border-radius: 0;
 
-            ${filtered.length > 0 ? "min-width: bu-80;" : ""}
+            ${filtered.length > 1 ? "min-width: bu-80;" : ""}
                 
             position: relative;
+            cursor: pointer;
 
             transition: background 0.1s ease;
         }

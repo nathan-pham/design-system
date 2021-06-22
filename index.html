@@ -17,14 +17,19 @@
             box-sizing: border-box;
             font-family: Arial;
         }
+
+        *, ::before, ::after {
+            box-sizing: inherit;
+        }
     </style>
 
     <script src="js/index.js" type="module"></script>
 </head>
 <body>
     <d-container type="main">
-        <h1>Buttons</h1>
+        <h1>Design System</h1>
 
+        <h2>Buttons</h2>
         <d-container type="flex">
             <d-button style="margin: 0 0.5rem 0 0;">
                 Settings 
@@ -40,6 +45,9 @@
                 <ion-icon name="search-outline"></ion-icon>
             </d-button>
         </d-container>
+
+        <h2>Input</h2>
+        <d-input label="Text Input Label" placeholder="Optional placeholder text" style="width: 20rem;"></d-input>
     </d-container>
 </body>
 </html>
