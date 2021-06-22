@@ -4,7 +4,8 @@ import { css } from "../theme.js"
 
 define("d-button", {
     style(state, target) {
-        const childNodes = [...target.shadowRoot.childNodes[0].childNodes].filter(node => String(node.textContent).trim().length > 1 && node.nodeName == "#text")
+        const { childNodes } = target.shadowRoot.childNodes[0]
+        const filtered = [...childNodes].filter(node => String(node.textContent).trim().length > 1 && node.nodeName == "#text")
 
         return css(`button {
             background: dblue-500;
@@ -24,7 +25,7 @@ define("d-button", {
             border: none;
             border-radius: 0;
 
-            ${ childNodes.length > 0 ? "min-width: bu-80;" : "" }
+            ${filtered.length > 0 ? "min-width: bu-80;" : ""}
                 
             position: relative;
 
