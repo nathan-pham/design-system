@@ -52,9 +52,9 @@ define("d-button", {
     },
 
     render(state, target) {
-        const {style, type="primary"} = props(target)
+        const {width, type="primary"} = props(target)
 
-        return jsh.button({style, class: type},
+        return jsh.button({style: `width: ${width}px`, class: type},
             ...target.childNodes
         ) 
     }
