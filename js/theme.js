@@ -13,6 +13,11 @@ export const theme = {
     // colors
     "black": "#000000",
     "white": "#ffffff",
+    "red": "#da1e28",
+    "green": "#198038",
+    "orange": "#ff832b",
+    "yellow": "#fdd13a",
+
     ...generatePalette("blue", [
         "#edf5ff",
         "#d0e2ff",
@@ -25,15 +30,25 @@ export const theme = {
         "#001d6c",
         "#001141"
     ]),
-    // ...generatePalette("gray", [
 
-    // ])
+    ...generatePalette("gray", [
+        "#f4f4f4",
+        "#e0e0e0",
+        "#c6c6c6",
+        "#a8a8a8",
+        "#8d8d8d",
+        "#6f6f6f",
+        "#525252",
+        "#393939",
+        "#262626",
+        "#161616"
+    ]),
 
     // base units
     "bu": "0.125rem"
 }
 
-export const style = (strings) => {
+export const css = (strings) => {
     let stylesheet = Array.isArray(strings) ? strings.join(' ') : strings
 
     for(const [key, value] of Object.entries(theme)) {
@@ -43,7 +58,7 @@ export const style = (strings) => {
 
                 if(matches) {
                     for(const match of matches) {
-                        const [bu, multiplier] = match.split('-')
+                        const multiplier = match.split('-').pop()
                         stylesheet = stylesheet.replaceAll(match, `calc(${theme.bu} * ${multiplier})`)
                     }
                 }
