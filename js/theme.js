@@ -62,8 +62,11 @@ export const css = (strings) => {
         token = semicolon ? token.replace(';', '') : token
 
         if(token.startsWith("bu-")) {
-            const multiplier = token.split('-').pop()
-            tokens[i] = `calc(${theme.bu} * ${multiplier})` + (semicolon ? ";" : '')
+            const [bu, multiplier] = token.split('-')
+
+            if(bu == "bu") {
+                tokens[i] = `calc(${theme.bu} * ${multiplier})` + (semicolon ? ";" : '')
+            }
         } else if(theme.hasOwnProperty(token)) {
             tokens[i] = theme[token] + (semicolon ? ";" : '')
         }
