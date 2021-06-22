@@ -1,6 +1,6 @@
-import { css } from "./config.js"
+import { style } from "./config.js"
 
-console.log(css`
+console.log(style`
     html {
         background: blue-50;
     }

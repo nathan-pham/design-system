@@ -30,15 +30,13 @@ export const color = {
     // ])
 }
 
-export const css = (strings) => {
+export const style = (strings) => {
     let stylesheet = Array.isArray(strings) ? strings.join(' ') : strings
 
     for(const [key, value] of Object.entries(color)) {
         if(stylesheet.includes(key)) {
             stylesheet = stylesheet.replace(key, value)
         }
-        // if(stylesheet.includes(key)) {
-        // }
     }
     
     return stylesheet
