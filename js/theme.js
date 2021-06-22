@@ -51,24 +51,24 @@ export const theme = {
 
 export const css = (strings) => {
     let stylesheet = Array.isArray(strings) ? strings.join(' ') : strings
+    let tokens = stylesheet.split(' ').map(v => v.trim()).filter(v => v.length)
 
-    for(const [key, value] of Object.entries(theme)) {
-        if(stylesheet.includes(key)) {
-            if(key == "bu") {
-                const matches = stylesheet.match(/bu-[0-9]+/g)
+    console.log(tokens)
 
-                if(matches) {
-                    for(const match of matches) {
-                        const multiplier = match.split('-').pop()
-                        stylesheet = stylesheet.replaceAll(match, `calc(${theme.bu} * ${multiplier})`)
-                    }
-                }
-            } else if(theme.hasOwnProperty(key)) {
-                stylesheet = stylesheet.replaceAll(key, value)
-            }
+    for(let i = 0; i < tokens.length; i++) {
+        let token = tokens[i]
+        let semicolon = token.includes(';')
+        
+        token = semicolon ? token.replace(';', '') : token
+
+        if(token.startsWith("bu-")) {
+            const multiplier = token.split('-').pop()
+            tokens[i] = `calc(${theme.bu} * ${multiplier})` + (semicolon ? ";" : '')
+        } else if(theme.hasOwnProperty(token)) {
+            tokens[i] = theme[token] + (semicolon ? ";" : '')
         }
     }
-    
-    return stylesheet
+
+    return tokens.join(' ')
 }
 
